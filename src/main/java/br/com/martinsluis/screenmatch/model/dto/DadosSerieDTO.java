@@ -4,5 +4,5 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 
 public record DadosSerieDTO(
         @JsonAlias("Title")String titulo,
-        @JsonAlias("totalSesons")Integer totalEmporadas,
+        @JsonAlias("totalSeasons")Integer totalTemporadas,
         @JsonAlias("imdbRating")String avaliacao){}
