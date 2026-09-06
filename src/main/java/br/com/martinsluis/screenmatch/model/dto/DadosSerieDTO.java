@@ -1,4 +1,4 @@
-package br.com.martinsluis.screenmatch.model;
+package br.com.martinsluis.screenmatch.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
