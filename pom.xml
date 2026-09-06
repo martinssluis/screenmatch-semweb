@@ -42,10 +42,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>tools.jackson.core</groupId>
+			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>3.2.1</version>
-			<scope>compile</scope>
+			<version>2.15.2</version>
 		</dependency>
 	</dependencies>
 
