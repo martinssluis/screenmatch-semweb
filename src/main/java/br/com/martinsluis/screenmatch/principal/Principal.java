@@ -1,5 +1,6 @@
 package br.com.martinsluis.screenmatch.principal;
 
+import br.com.martinsluis.screenmatch.model.dto.DadosEpisodioDTO;
 import br.com.martinsluis.screenmatch.model.dto.DadosSerieDTO;
 import br.com.martinsluis.screenmatch.model.dto.DadosTemporadaDTO;
 import br.com.martinsluis.screenmatch.service.ConsumoAPI;
@@ -32,5 +33,7 @@ public class Principal {
             temporadas.add(dadosTemporada);
         }
         temporadas.forEach(System.out::println);
+
+        temporadas.forEach(t -> t.episodios().forEach(e-> System.out.println(e.titulo())));
     }
 }
