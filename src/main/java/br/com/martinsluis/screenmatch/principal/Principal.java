@@ -1,5 +1,6 @@
 package br.com.martinsluis.screenmatch.principal;
 
+import br.com.martinsluis.screenmatch.model.Episodio;
 import br.com.martinsluis.screenmatch.model.dto.DadosEpisodioDTO;
 import br.com.martinsluis.screenmatch.model.dto.DadosSerieDTO;
 import br.com.martinsluis.screenmatch.model.dto.DadosTemporadaDTO;
@@ -49,5 +50,12 @@ public class Principal {
                 .sorted(Comparator.comparing(DadosEpisodioDTO::avaliacao).reversed())
                 .limit(5)
                 .forEach(System.out::println);
+
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d)))
+                        .collect(Collectors.toList());
+
+        episodios.forEach(System.out::println);
     }
 }
