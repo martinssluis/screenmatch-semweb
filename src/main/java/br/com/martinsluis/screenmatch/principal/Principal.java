@@ -3,7 +3,9 @@ package br.com.martinsluis.screenmatch.principal;
 import br.com.martinsluis.screenmatch.model.Serie;
 import br.com.martinsluis.screenmatch.model.dto.DadosSerieDTO;
 import br.com.martinsluis.screenmatch.model.dto.DadosTemporadaDTO;
+import br.com.martinsluis.screenmatch.service.ConsultaGemini;
 import br.com.martinsluis.screenmatch.service.ConsumoAPI;
+import org.springframework.stereotype.Component;
 import br.com.martinsluis.screenmatch.service.ConverteDados;
 
 import java.util.ArrayList;
@@ -12,7 +14,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+@Component
 public class Principal {
+
+    private final ConsultaGemini consultaGemini;
+
+    public Principal(ConsultaGemini consultaGemini) {
+        this.consultaGemini = consultaGemini;
+    }
 
     private Scanner leitura = new Scanner(System.in);
     private ConsumoAPI consumo = new ConsumoAPI();
@@ -58,7 +67,11 @@ public class Principal {
     private void listarSerieBuscadas() {
         List<Serie> series = new ArrayList<>();
         series =  dadosSeries.stream()
-                        .map(d-> new Serie(d))
+                        .map(d -> {
+                            Serie serie = new Serie(d);
+                            serie.setSinopse(consultaGemini.obterTraducao(serie.getSinopse()).trim());
+                            return serie;
+                        })
                         .collect(Collectors.toList());
 
         series.stream()
