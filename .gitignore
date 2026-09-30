@@ -6,7 +6,7 @@ target/
 
 ### env ###
 *.env
-!exemple.env
+!example.env
 
 ### STS ###
 .apt_generated
