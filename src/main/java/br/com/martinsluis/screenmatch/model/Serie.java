@@ -2,17 +2,35 @@ package br.com.martinsluis.screenmatch.model;
 
 
 import br.com.martinsluis.screenmatch.model.dto.DadosSerieDTO;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name="series")
 public class Serie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(unique = true)
     private String titulo;
+
     private Integer totalTemporadas;
+
     private Double avaliacao;
+
+    @Enumerated(EnumType.STRING)
     private Generos genero;
+
     private String atores;
+
     private String poster;
+
     private String sinopse;
+
+    public Serie(){}
 
     public Serie(DadosSerieDTO dadosSerieDTO) {
         this.titulo = dadosSerieDTO.titulo();
@@ -22,6 +40,14 @@ public class Serie {
         this.atores = dadosSerieDTO.atores();
         this.poster = dadosSerieDTO.poster();
         this.sinopse = dadosSerieDTO.sinopse();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
