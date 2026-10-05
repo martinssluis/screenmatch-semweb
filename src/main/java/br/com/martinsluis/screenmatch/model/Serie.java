@@ -4,6 +4,8 @@ package br.com.martinsluis.screenmatch.model;
 import br.com.martinsluis.screenmatch.model.dto.DadosSerieDTO;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalDouble;
 
 @Entity
@@ -29,6 +31,9 @@ public class Serie {
     private String poster;
 
     private String sinopse;
+
+    @Transient
+    private List<Episodio> episodios = new ArrayList<>();
 
     public Serie(){}
 
@@ -108,14 +113,25 @@ public class Serie {
 
     @Override
     public String toString() {
-        return
-                "Genero=" + genero +
-                "Titulo='" + titulo + '\'' +
-                ", TotalTemporadas=" + totalTemporadas +
-                ", Avaliacao=" + avaliacao +
-                ", Atores='" + atores + '\'' +
-                ", Poster='" + poster + '\'' +
-                ", Sinopse='" + sinopse + '\'' +
+        return "Serie{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", totalTemporadas=" + totalTemporadas +
+                ", avaliacao=" + avaliacao +
+                ", genero=" + genero +
+                ", atores='" + atores + '\'' +
+                ", poster='" + poster + '\'' +
+                ", sinopse='" + sinopse + '\'' +
+                ", episodios=" + episodios +
                 '}';
     }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
+
 }
