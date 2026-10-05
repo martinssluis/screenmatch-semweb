@@ -68,15 +68,7 @@ public class Principal {
     }
 
     private void listarSerieBuscadas() {
-        List<Serie> series = new ArrayList<>();
-        series =  dadosSeries.stream()
-                        .map(d -> {
-                            Serie serie = new Serie(d);
-                            serie.setSinopse(consultaGemini.obterTraducao(serie.getSinopse()).trim());
-                            return serie;
-                        })
-                        .collect(Collectors.toList());
-
+        List<Serie> series = serieRepository.findAll();
         series.stream()
                         .sorted(Comparator.comparing(Serie::getGenero))
                         .forEach(System.out::println);
